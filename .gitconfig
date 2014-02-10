@@ -1,0 +1,44 @@
+[user]
+name = Chris Marinos
+email = chris@chrismarinos.com
+
+[core]
+excludesfile = ~/.gitignore
+
+[color]
+ui = auto
+
+[color "branch"]
+current = blue
+local = green bold
+remote = yellow bold
+
+[color "diff"]
+meta = green
+frag = magenta bold
+old = red
+new = cyan
+
+[color "status"]
+added = cyan
+changed = green
+untracked = red bold
+
+[alias]
+co = checkout
+ci = commit
+st = status
+br = branch
+deploy = push heroku master
+hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+type = cat-file -t
+dump = cat-file -p
+ignore = !([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore
+detail = log --stat --abbrev-commit
+ph = log -p --color-words --cc --word-diff
+
+[svn]
+pushmergeinfo = true
+
+[push]
+default = simple
