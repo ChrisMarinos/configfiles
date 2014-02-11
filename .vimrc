@@ -12,7 +12,7 @@ Bundle 'gmarik/vundle'
 Bundle 'bufexplorer.zip'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'klen/python-mode' "this is the easiest way to install rope, but I turn most everything else off
+Bundle 'klen/python-mode'
 Bundle 'scrooloose/syntastic'
 Bundle 'trailing-whitespace'
 Bundle 'trailing-whitespace'
