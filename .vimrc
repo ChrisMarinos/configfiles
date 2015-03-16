@@ -3,8 +3,8 @@ set nocompatible
 filetype on "prevent vim from returning a non-zero error code when filetype is already off
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 Bundle 'gmarik/vundle'
 Bundle 'bufexplorer.zip'
@@ -20,6 +20,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-abolish'
 Bundle 'vim-ruby/vim-ruby'
 
+call vundle#end()
 filetype plugin indent on
 
 " -------------------------------------------------------------
