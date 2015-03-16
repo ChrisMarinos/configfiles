@@ -1,6 +1,4 @@
 " -------------------------------------------------------------
-" vundle
-" -------------------------------------------------------------
 set nocompatible
 filetype on "prevent vim from returning a non-zero error code when filetype is already off
 filetype off
@@ -13,10 +11,14 @@ Bundle 'bufexplorer.zip'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'klen/python-mode'
-Bundle 'scrooloose/syntastic'
-Bundle 'trailing-whitespace'
+" Bundle 'scrooloose/syntastic'
 Bundle 'trailing-whitespace'
 Bundle 'joonty/vdebug.git'
+Bundle 'bling/vim-airline'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-abolish'
+Bundle 'vim-ruby/vim-ruby'
 
 filetype plugin indent on
 
@@ -24,29 +26,38 @@ filetype plugin indent on
 " python
 " -------------------------------------------------------------
 
-let g:pymode_folding=0
+" let g:pymode_folding=0
 let g:pymode_utils_whitespaces=0
 let g:pymode_motion=0
-let g:pymode_lint=0
+let g:pymode_lint=1
+let g:pymode_lint_checkers=['pyflakes', 'pep8']
 let g:pymode_lint_onfly=1
+let g:pymode_lint_unmodified=1
 let g:pymode_lint_message=1
+let g:pymode_lint_cwindow = 0
 let g:pymode_doc_key='<Leader>pi'
-map <Leader>pd :RopeGotoDefinition<CR>
-map <Leader>pr :RopeRename<CR>
-map <Leader>pi :RopeShowDoc<CR>
-map <Leader>po :RopeFindOccurrences<CR>
+
+let g:pymode_rope_goto_definition_bind = '<Leader>pd'
+let g:pymode_rope_rename_bind = '<Leader>pr'
+let g:pymode_rope_organize_imports_bind = '<Leader>poi'
+let g:pymode_rope_autoimport_bind = '<Leader>pi'
+let g:pymode_rope_extract_method_bind = '<Leader>pem'
+let g:pymode_rope_goto_definition_cmd = 'e'
+let g:pymode_trim_whitespaces = 0
 
 " -------------------------------------------------------------
 " syntastic
 " -------------------------------------------------------------
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_python_checkers=["flake8"]
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_python_checkers=["flake8"]
 
 " -------------------------------------------------------------
 " vdebug
 " -------------------------------------------------------------
+"
+let g:pyflakes_use_quickfix = 0
 
 let g:vdebug_options= {"timeout" : 1000 }
 
@@ -86,7 +97,26 @@ nmap <leader><Tab> mz:execute TabToggle()<CR>'z
 set ignorecase
 set smartcase
 
-set ruler
+" stautsline
+"set ruler
+let g:gitgutter_realtime=1
+set laststatus=2
+let g:airline_powerline_fonts=1
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V',
+    \ '' : 'V',
+    \ 's'  : 'S',
+    \ 'S'  : 'S',
+    \ '' : 'S',
+    \ }
+
+let g:airline_section_x = 0
 
 " ` is more useful than ' but less accessible.
 nnoremap ' `
@@ -94,8 +124,8 @@ nnoremap ` '
 
 " buffer related
 set hidden
-nnoremap <Leader>p :bp<CR>
-nnoremap <Leader>n :bn<CR>
+
+" go to last opened buffer
 nnoremap <Leader>g :e#<CR>
 
 " highlight lines over 80 chars
@@ -114,3 +144,12 @@ set list
 
 " grep current word in directory
 map <Leader>w :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
+
+set foldlevelstart=20
+
+:command -nargs=+ Gfind execute 'Ggrep' <q-args> | cw
+
+
+" quickfix shortcuts
+nnoremap <Leader>cn :cn<CR>
+nnoremap <Leader>cp :cp<CR>
