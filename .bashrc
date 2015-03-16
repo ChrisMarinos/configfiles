@@ -14,6 +14,3 @@ export SVN_EDITOR=vim
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
-
-# virtualenvwraper (requires virtualenvwrapper which is essential for .py dev)
-source virtualenvwrapper.sh
