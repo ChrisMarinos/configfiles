@@ -5,6 +5,7 @@ email = chris@chrismarinos.com
 [core]
 excludesfile = ~/.gitignore
 editor = vim
+pager = sed 's/\t/...>/g' | less
 
 [color]
 ui = auto
