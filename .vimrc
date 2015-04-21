@@ -6,19 +6,20 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'bufexplorer.zip'
-Bundle 'kevinw/pyflakes-vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'klen/python-mode'
-" Bundle 'scrooloose/syntastic'
-Bundle 'trailing-whitespace'
-Bundle 'joonty/vdebug.git'
-Bundle 'bling/vim-airline'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-abolish'
-Bundle 'vim-ruby/vim-ruby'
+Plugin 'gmarik/vundle.vim'
+Plugin 'bufexplorer.zip'
+Plugin 'kevinw/pyflakes-vim'
+Plugin 'altercation/vim-colors-solarized'
+"Plugin 'klen/python-mode'
+Plugin 'scrooloose/syntastic'
+Plugin 'trailing-whitespace'
+Plugin 'joonty/vdebug.git'
+Plugin 'bling/vim-airline'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-abolish'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'mxw/vim-jsx'
 
 call vundle#end()
 filetype plugin indent on
@@ -49,10 +50,17 @@ let g:pymode_trim_whitespaces = 0
 " -------------------------------------------------------------
 " syntastic
 " -------------------------------------------------------------
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 "let g:syntastic_python_checkers=["flake8"]
+let g:syntastic_javascript_checkers=["eslint"]
 
 " -------------------------------------------------------------
 " vdebug
