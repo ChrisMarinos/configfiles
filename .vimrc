@@ -148,8 +148,8 @@ colorscheme solarized
 inoremap <C-space> <C-n>
 
 " show tabs
-set listchars=tab:>.
-set list
+"set listchars=tab:>.
+"set list
 
 " grep current word in directory
 map <Leader>w :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
