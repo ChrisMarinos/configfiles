@@ -19,7 +19,13 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-abolish'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'heavenshell/vim-jsdoc'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'junkblocker/patchreview-vim'
+Plugin 'jeetsukumaran/vim-buffergator'
 
 call vundle#end()
 filetype plugin indent on
@@ -61,6 +67,17 @@ let g:syntastic_check_on_wq = 0
 
 "let g:syntastic_python_checkers=["flake8"]
 let g:syntastic_javascript_checkers=["eslint"]
+let g:syntastic_scss_checkers=["scss_lint"]
+
+" -------------------------------------------------------------
+" jsdoc
+" -------------------------------------------------------------
+let g:jsdoc_input_description = 1
+let g:jsdoc_allow_input_prompt = 1
+let g:jsdoc_access_descriptions = 2
+let g:jsdoc_allow_shorthand = 1
+let g:jsdoc_param_description_separator = ' - '
+nnoremap <Leader>jd :JsDoc<CR>
 
 " -------------------------------------------------------------
 " vdebug
@@ -84,9 +101,7 @@ set backspace=2
 set wildmenu
 set wildmode=longest,list
 
-" tabs #TheWorst
-set tabstop=4
-set shiftwidth=4
+" tabs
 set copyindent
 set preserveindent
 inoremap <S-Tab> <C-V><Tab>
@@ -94,10 +109,19 @@ inoremap <S-Tab> <C-V><Tab>
 function! TabToggle()
     if &expandtab
         set noexpandtab
+        set tabstop=4
+        set softtabstop=4
+        set shiftwidth=4
     else
         set expandtab
+        set tabstop=4
+        set softtabstop=4
+        set shiftwidth=4
     endif
 endfunction
+
+set expandtab
+execute TabToggle()
 
 nmap <leader><Tab> mz:execute TabToggle()<CR>'z
 
@@ -133,6 +157,7 @@ nnoremap ` '
 
 " buffer related
 set hidden
+nnoremap <Leader>bq :bufdo :bdelete<CR>
 
 " go to last opened buffer
 nnoremap <Leader>g :e#<CR>
@@ -144,12 +169,11 @@ match OverLength /\%81v.\+/
 " use solarized for pretty colors
 set background=dark
 colorscheme solarized
+set listchars=tab:→\ 
+set list
+hi SpecialKey ctermfg=2 ctermbg=8
 
 inoremap <C-space> <C-n>
-
-" show tabs
-"set listchars=tab:>.
-"set list
 
 " grep current word in directory
 map <Leader>w :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
@@ -162,3 +186,14 @@ set foldlevelstart=20
 " quickfix shortcuts
 nnoremap <Leader>cn :cn<CR>
 nnoremap <Leader>cp :cp<CR>
+
+
+" nerd tree
+map <Leader>t :NERDTreeToggle<CR>
+
+"ctrlp
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" buffergator
+let g:buffergator_viewport_split_policy = 'B'
+let g:buffergator_split_size = 10
