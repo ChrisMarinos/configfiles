@@ -38,6 +38,8 @@ dump = cat-file -p
 ignore = !([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore
 detail = log --stat --abbrev-commit
 ph = log -p --color-words --cc --word-diff
+pc = push -u origin HEAD
+rd = fetch origin develop:develop
 
 [svn]
 pushmergeinfo = true
